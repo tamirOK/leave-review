@@ -1,0 +1,39 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/subtemplate.css'%}">
+<ul id="students-list" class="list-group">
+  {% if students %}
+    {% for student in students %}
+      <div id="student-filtered-results">
+        <a href="http://{{host}}/students/{{ student.name }}-{{ student.surname }}/">
+          <img id="student-photo" src="{{ student.photo.url }}" width="80" height="80">
+        </a>
+        <div id="main-info">
+          Name: {{student.name}} <br>
+          Surname: {{ student.surname }} <br>
+          Graduation Year: {{ student.year.year }}
+        </div>
+      </div>
+    {% endfor %}
+  
+</ul>
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if students.has_previous %}
+            <a id="prev" href="" onclick="prev(event)">previous</a>
+        {% endif %}
+
+        {% if students %}
+        <span class="current">
+            Page {{ students.number }} of {{ students.paginator.num_pages }}.
+        </span>
+        {% endif %}
+
+        {% if students.has_next %}
+            <a id="next" href="" onclick="next(event)">next</a>
+        {% endif %}
+    </span>
+</div>
+{% endif %}

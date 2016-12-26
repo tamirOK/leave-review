@@ -1,0 +1,8 @@
+{% if specializations %}
+  {% for specialization in specializations %}
+  <div class="specialization" style="display: inline-block; padding: 10px">
+    <input name="group2" type="radio" id="{{specialization}}" onchange="addStudents(this)" />
+    <label for="{{specialization}}">{{specialization}}</label>
+  </div>
+  {% endfor %}
+{% endif %}

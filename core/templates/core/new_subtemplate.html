@@ -1,0 +1,42 @@
+{% load staticfiles %}
+{% if students %}
+  {% for student in students %}
+  <div class="student card hoverable" onclick="redirect(this)">
+    <div class="photo">
+      <a class="name" href="{% url 'core:student-detail' student.name student.surname %}">
+        <img src="{{ student.photo.url }}" class="responsive-img" width="180px" height="180px" alt="" />
+      </a>
+      </div>
+    <div class="info"> <div class="student-name">Name : {{ student.name }} </div>
+                         <div class="student-surname">Surname: {{ student.surname }} </div>
+                         <div class="student-year">Graduation Year: {{ student.year.year }} </div>
+    </div>
+  </div>
+  {% endfor %}
+
+  <div class="pagination">
+    <span class="step-links">
+        {% if students and students.has_previous %}
+            {% if specialization %}
+              <a class="prev waves-effect waves-light btn" href="" onclick='Retrieve(event,{{students.previous_page_number}}, "{{students.0.specialization.faculty.name }}", "{{ students.0.specialization.name }}")'>previous</a>
+            {% else %}  
+              <a class="prev waves-effect waves-light btn" href="" onclick='Retrieve(event,{{students.previous_page_number}}, "{{students.0.specialization.faculty.name }}")'>previous</a>
+            {% endif %}
+        {% else %}
+            <a class="prev waves-effect waves-light btn disabled">PREVIOUS</a>
+        {% endif %}
+
+
+        {% if students and students.has_next %}
+          {% if specialization %}
+            <a class="next waves-effect waves-light btn" href="" onclick='Retrieve(event,{{ students.next_page_number }}, "{{ students.0.specialization.faculty.name }}", "{{ students.0.specialization.name }}")'>next</a>
+          {% else %}
+            <a class="next waves-effect waves-light btn" href="" onclick='Retrieve(event,{{ students.next_page_number}}, "{{students.0.specialization.faculty.name }}")'>next</a>
+          {% endif %}
+        {% else %}
+          <a class="next waves-effect waves-light btn disabled">NEXT</a>
+        {% endif %}
+    </span>
+</div>
+    
+{% endif %}

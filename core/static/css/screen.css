@@ -1,0 +1,194 @@
+
+
+* { margin:0; padding:0; }
+body, div, span, p, a, img, ul, ol, li, table, th, tr, td, form, fieldset, legend, dl, dt, dd, blockquote, applet, object { border:0; }
+body {
+padding:0;
+margin: 0;
+background-color: #e9eaed;
+font-size: 15px;
+font-family: "Roboto";
+}
+
+
+#layout {
+width:745px;
+margin:0 auto;
+text-align:left;
+}
+
+#main-link {
+  color: #fff;
+  text-decoration: none;
+
+}
+#logo {
+  color: #fff;
+  font-size: 150%;
+  line-height: 100px;
+  margin-left: 2%;
+  display: inline-block;
+}
+/* hlavicka ------------------------------------------------------------------ */
+
+#header {
+  height: 100px;
+  background-color: #3f51b5;
+  position: relative;
+}
+
+.next {
+  background-color: #3f51b5;
+}
+
+.name {
+  color: #3F51B5;
+  font-size: 20px;
+
+}
+.shadow-demo {
+  background-color: #26a69a;
+}
+.filter {
+  background-color: green;
+}
+.student {
+  overflow: auto;
+  margin-top: 20px;
+  padding: 20px;
+}
+.name-div {
+  margin-bottom: 20px;
+}
+.photo {
+  margin-left: 12px;
+  float: left;
+}
+
+.info {
+  float: left;
+  margin-left: 20px;
+  font-size: 16px;
+  line-height: 250%;
+}
+.more {
+  float: left;
+  clear: both
+}
+.all-faculties {
+  
+  padding-top:1px;
+  padding-bottom: 21px;
+  border-bottom: 1px solid grey;
+}
+.faculty {
+  margin-top: 15px;
+  margin-left: 10px;
+}
+
+.prev {
+  float: left;
+  clear: both;
+  background-color: #3f51b5;
+  margin-right: 10px;
+}
+.next {
+  float: left;
+  background-color: #3f51b5;
+}
+#search {
+  float: right;
+}
+.single-review {
+  padding-top: 20px;
+  border-bottom: 1px solid grey;
+}
+
+.clock-img {
+  
+  clear: both;
+}
+.user-img {
+  
+  clear: both;
+}
+
+.comment-author {
+  width: 100px;
+}
+
+.info {
+  margin-top: -10px;
+}
+.add-review-button {
+  position: relative;
+  float: right;
+  right: 5px;
+  top: 60px;
+}
+#reviews {
+  margin-top: 20px;
+}
+.sign_up_header {
+  background-color: #3f51b5;
+}
+.brand-logo {
+  margin-left: 10px;
+  text-decoration: none;
+}
+#warning-message {
+  float: right;
+  clear: both;
+  margin-top: 20px;
+}
+#right-part-header {
+  float: right;
+}
+#logout-link {
+  float: right;
+  margin-top: -50px;
+  margin-right: 20px;
+  font-size: 20px;
+  color: #fff;
+}
+#log-link {
+  color: #fff;
+  text-decoration: none;
+}
+.logout-button {
+  min-width: 100px;
+  text-align: center;
+  font-size: 12px !important;
+  padding: 0 !important;
+  display: inline-block;
+}
+#logout-button-div {
+  float: right;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-top: -17.5px;
+  overflow: visible;
+  display: inline-block;
+}
+#name {
+  
+}
+.material-icons {
+  font-size: 15px;
+}
+.find-option {
+  float: left;
+}
+.pis {
+  margin-top: -30px;
+}
+#search-img {
+  position: absolute;
+  clear: both;
+  left: 10px;
+  top: 17px;
+}
+.nav-wrapper {
+  height: 100px;
+}

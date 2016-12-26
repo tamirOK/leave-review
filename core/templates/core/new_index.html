@@ -1,0 +1,119 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Review App</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link href="{% static 'css/materialize.css'%}" rel="stylesheet">
+  <link href="{% static 'css/screen.css' %}" rel="stylesheet">
+
+  </head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+        <div id="header" class="card" style="margin: 0 0 0 0 !important;">
+          <div id="logo"><a id="main-link" href="/">Review App</a></div>
+          {% if request.user.is_authenticated %}
+            <div id="logout-button-div"><a href="/accounts/logout" class="waves-effect waves-light btn logout-button">Logout</a></div>
+          {% endif %}
+        </div>
+    </div>
+  </div>
+
+    <div class="row">
+      <div class="input-field col s12" id="search">
+        <div class="card">
+          <span  style="display: inline-block; padding: 1px"><img src="{% static 'css/img/search-icon.svg' %}" id="search-img"></img></span>
+          <span style='display: inline-block; margin-left:3%; width: 90%;'><input placeholder="Search..." id="name" type="text" class="validate" autocomplete="off" style="margin-left: 10px;"></span>
+          <label class="active" for="first_name2"></label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col s12">
+      <div class="all-faculties card">
+        {% if faculties %}
+          {% for faculty in faculties %}
+          <div class="faculty" style="display: inline-block !important;">
+            <input name="group1" type="radio" id="{{faculty}}" onchange="addSpecializations(this)" />
+            <label for="{{faculty}}">{{faculty}}</label>
+          </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+
+
+      <div class="all-specializations card" style="margin-bottom: 10px !important; margin-top: 10px !important;">
+        {% if specializations %}
+          {% for specialization in specializations %}
+          <div class="specialization" style="display: inline-block !important;">
+            <input name="group2" type="radio" id="{{specialization}}" onchange="addStudents(this)" />
+            <label for="{{specialization}}">{{specialization}}</label>
+          </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <div id="container" class="box">
+              {% if students %}
+                {% for student in students %}
+
+                  <div class="student card hoverable" onclick="redirect(this)">
+                    <div class="photo" style="margin: 0 !important">
+                      <a class="name" href="{% url 'core:student-detail' student.name student.surname %}">
+                        <img src="{{ student.photo.url }}" class="responsive-img" width="180px" height="180px" alt="" />
+                      </a>
+                      </div>
+                    <div class="info"> <div class="student-name">Name : {{ student.name }} </div>
+                                         <div class="student-surname">Surname: {{ student.surname }} </div>
+                                         <div class="student-year">Graduation Year: {{ student.year.year }} </div>
+                    </div>
+                  </div>
+
+                {% endfor %}
+              {% endif %}
+
+              <div class="pagination">
+                  <span class="step-links">
+                      {% if students and students.has_previous %}
+                          {% if specialization %}
+                            <a class="prev waves-effect waves-light btn" href="" onclick='Retrieve(event,{{students.previous_page_number}}, "{{students.0.specialization.faculty.name }}", "{{ students.0.specialization.name }}")'>previous</a>
+                          {% else %}
+                            <a class="prev waves-effect waves-light btn" href="" onclick='Retrieve(event,{{students.previous_page_number}}, "{{students.0.specialization.faculty.name }}")'>previous</a>
+                          {% endif %}
+                      {% else %}
+                          <a class="prev waves-effect waves-light btn disabled">PREVIOUS</a>
+                      {% endif %}
+
+
+                      {% if students and students.has_next %}
+                        {% if specialization %}
+                          <a class="next waves-effect waves-light btn" href="" onclick='Retrieve(event,{{ students.next_page_number }}, "{{ students.0.specialization.faculty.name }}", "{{ students.0.specialization.name }}")'>next</a>
+                        {% else %}
+                          <a class="next waves-effect waves-light btn" href="" onclick='Retrieve(event,{{ students.next_page_number}}, "{{students.0.specialization.faculty.name }}")'>next</a>
+                        {% endif %}
+                      {% else %}
+                        <a class="next waves-effect waves-light btn disabled">NEXT</a>
+                      {% endif %}
+                  </span>
+              </div>
+          </div>
+    </div>
+
+  </div>
+</div>
+
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js'%}"></script>
+<script src="{%  static 'js/materialize.js' %}"></script>
+<script src="{% static 'js/myScript.js' %}"></script>
+</body>
+</html>

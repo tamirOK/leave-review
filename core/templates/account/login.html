@@ -1,0 +1,54 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account %}
+{% load socialaccount %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-bottom: 50px;">
+  <div class="row">
+    <div class="col-md-5">
+      <h2 style="margin: 0px !important; padding-top: 30px; padding-bottom: 20px;">{% trans "Sign In" %}</h2>
+      {% get_providers as socialaccount_providers %}
+      {% if socialaccount_providers %}
+      <p>{% blocktrans with site.name as site_name %}Please sign in with one
+      of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+      for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+
+      <div class="socialaccount_ballot">
+
+        <ul class="socialaccount_providers">
+          {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+        </ul>
+
+        <div class="login-or">{% trans 'or' %}</div>
+
+      </div>
+
+
+      {% endif %}
+
+      <form class="login" method="POST" action="{% url 'account_login' %}">
+        {% csrf_token %}
+        {{ form|crispy }}
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <button id="sign-in-button" style="margin-top: 50px;" class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function() {
+    $("#div_id_remember").css("display", "none");
+    $("#error_1_id_login").css("color", "red");
+    $("#error_1_id_password").css("color", "red");
+  });
+</script>
+
+{% endblock %}
